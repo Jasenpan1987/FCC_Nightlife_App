@@ -1,0 +1,54 @@
+<% include partials/head.ejs %>
+<div class="container">
+    <h2>Bars found in <%=keywords%></h2>
+    <form action="/search" method="get" style="margin-top: 35px">
+        <div class="row">
+            <div class="col-md-11">
+                <input type="text" class="form-control" id="keywords" name="keywords"
+                       placeholder="Type the location you want to search...">
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <br />
+    <ul class="media-list">
+        <%for(var i=0; i<bars.length; i++){%>
+        <br />
+        <li class="media" style="margin-top: 10px">
+            <div class="media-left">
+                <a href="<%=bars[i].url%>">
+                    <img class="media-object"
+                         style="width:100px; height:100px"
+                         src="<%=bars[i].image_url%>" alt="<%=bars[i].name%>">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><%=bars[i].name%></h4>
+                <p><%=bars[i].snippet_text%></p>
+                <%if(true){%>
+                <div class="goingContainer">
+                    <h4><%=bars[i].attending%> Going</h4>
+                    <a href="/going/?name=<%=bars[i].name%>&latitude=<%=bars[i].location.coordinate.latitude%>&longitude=<%=bars[i].location.coordinate.longitude%>"
+                       class="btn btn-primary btn-sm"
+                       style="margin-left: 15px"
+                    >
+                        Going
+                    </a>
+                </div>
+
+                <%}else{%>
+                <div class="row">
+                    <form action="/cancel" method="post">
+                        <button class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                </div>
+                <%}%>
+            </div>
+        </li>
+
+        <%}%>
+    </ul>
+</div>
+<% include partials/tail.ejs %>

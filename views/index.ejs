@@ -1,0 +1,31 @@
+<% include partials/head.ejs %>
+<body>
+  <div class="container">
+    <h1 class="text-center text-info">What's the plan tonight?</h1>
+    <br />
+   <div class="icon-box">
+     <i class="fa fa-map-marker fa-5x" ></i>
+     <i class="fa fa-cab fa-5x" style="margin-left: 22px"></i>
+     <i class="fa fa-glass fa-5x" style="margin-left: 15px"></i>
+   </div>
+    <br />
+    <%if(!user){%>
+    <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+    <%}else{%>
+    <a href="/auth/logout" class="btn btn-danger">Logout</a>
+    <%}%>
+
+    <form action="/search" method="get" style="margin-top: 35px">
+      <div class="row">
+        <div class="col-md-11">
+          <input type="text" class="form-control" id="keywords" name="keywords"
+                 placeholder="Type the location you want to search...">
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+<% include partials/tail.ejs %>
